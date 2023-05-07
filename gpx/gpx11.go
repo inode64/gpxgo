@@ -157,21 +157,23 @@ type gpx11Gpx struct {
 
 	Version     string         `xml:"version,attr"`
 	Creator     string         `xml:"creator,attr"`
+	Metadata    string         `xml:"metadata,omitempty"`
 	Name        string         `xml:"metadata>name,omitempty"`
 	Desc        string         `xml:"metadata>desc,omitempty"`
 	AuthorName  string         `xml:"metadata>author>name,omitempty"`
 	AuthorEmail *gpx11GpxEmail `xml:"metadata>author>email,omitempty"`
 	// TODO: There can be more than one link?
-	AuthorLink *gpx11GpxLink      `xml:"metadata>author>link,omitempty"`
-	Copyright  *gpx11GpxCopyright `xml:"metadata>copyright,omitempty"`
-	Link       *gpx11GpxLink      `xml:"metadata>link,omitempty"`
-	Timestamp  string             `xml:"metadata>time,omitempty"`
-	Keywords   string             `xml:"metadata>keywords,omitempty"`
-	Extensions Extension          `xml:"metadata>extensions"`
-	Bounds     *gpx11GpxBounds    `xml:"bounds"`
-	Waypoints  []*gpx11GpxPoint   `xml:"wpt"`
-	Routes     []*gpx11GpxRte     `xml:"rte"`
-	Tracks     []*gpx11GpxTrk     `xml:"trk"`
+	AuthorLink         *gpx11GpxLink      `xml:"metadata>author>link,omitempty"`
+	Copyright          *gpx11GpxCopyright `xml:"metadata>copyright,omitempty"`
+	Link               *gpx11GpxLink      `xml:"metadata>link,omitempty"`
+	Timestamp          string             `xml:"metadata>time,omitempty"`
+	Keywords           string             `xml:"metadata>keywords,omitempty"`
+	MetadataExtensions Extension          `xml:"metadata>extensions,omitempty"`
+	Bounds             *gpx11GpxBounds    `xml:"bounds"`
+	Waypoints          []*gpx11GpxPoint   `xml:"wpt"`
+	Routes             []*gpx11GpxRte     `xml:"rte"`
+	Tracks             []*gpx11GpxTrk     `xml:"trk"`
+	Extensions         Extension          `xml:"extensions,omitempty"`
 }
 
 type gpx11GpxBounds struct {
@@ -245,7 +247,7 @@ type gpx11GpxPoint struct {
 	Pdop          *float64  `xml:"pdop,omitempty"`
 	AgeOfDGpsData *float64  `xml:"ageofdgpsdata,omitempty"`
 	DGpsId        *int      `xml:"dgpsid,omitempty"`
-	Extensions    Extension `xml:"extensions"`
+	Extensions    Extension `xml:"extensions,omitempty"`
 }
 
 type gpx11GpxRte struct {
@@ -259,13 +261,13 @@ type gpx11GpxRte struct {
 	Number     NullableInt      `xml:"number,omitempty"`
 	Type       string           `xml:"type,omitempty"`
 	Points     []*gpx11GpxPoint `xml:"rtept"`
-	Extensions Extension        `xml:"extensions"`
+	Extensions Extension        `xml:"extensions,omitempty"`
 }
 
 type gpx11GpxTrkSeg struct {
 	XMLName    xml.Name         `xml:"trkseg"`
 	Points     []*gpx11GpxPoint `xml:"trkpt"`
-	Extensions Extension        `xml:"extensions"`
+	Extensions Extension        `xml:"extensions,omitempty"`
 }
 
 // Trk is a GPX track
@@ -280,5 +282,5 @@ type gpx11GpxTrk struct {
 	Number     NullableInt       `xml:"number,omitempty"`
 	Type       string            `xml:"type,omitempty"`
 	Segments   []*gpx11GpxTrkSeg `xml:"trkseg,omitempty"`
-	Extensions Extension         `xml:"extensions"`
+	Extensions Extension         `xml:"extensions,omitempty"`
 }
