@@ -157,7 +157,6 @@ type gpx11Gpx struct {
 
 	Version     string         `xml:"version,attr"`
 	Creator     string         `xml:"creator,attr"`
-	Metadata    string         `xml:"metadata,omitempty"`
 	Name        string         `xml:"metadata>name,omitempty"`
 	Desc        string         `xml:"metadata>desc,omitempty"`
 	AuthorName  string         `xml:"metadata>author>name,omitempty"`
